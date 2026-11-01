@@ -1,0 +1,22 @@
+    <receiver android:name=".ChatsWidget" android:exported="true" android:label="@string/pm_w_chats">
+        <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+        <meta-data android:name="android.appwidget.provider" android:resource="@xml/pm_chats_info" />
+    </receiver>
+    <receiver android:name=".NotesWidget" android:exported="true" android:label="@string/pm_w_notes">
+        <intent-filter>
+            <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            <action android:name="com.pastmetki.app.TOGGLE" />
+        </intent-filter>
+        <meta-data android:name="android.appwidget.provider" android:resource="@xml/pm_notes_info" />
+    </receiver>
+    <receiver android:name=".DeadlineWidget" android:exported="true" android:label="@string/pm_w_deadline">
+        <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+        <meta-data android:name="android.appwidget.provider" android:resource="@xml/pm_deadline_info" />
+    </receiver>
+    <service android:name=".ChatsService" android:permission="android.permission.BIND_REMOTEVIEWS" android:exported="false" />
+    <service android:name=".NotesService" android:permission="android.permission.BIND_REMOTEVIEWS" android:exported="false" />
+
+    <receiver android:name=".QuickActionsWidget" android:exported="true" android:label="@string/pm_w_quick">
+        <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+        <meta-data android:name="android.appwidget.provider" android:resource="@xml/pm_quick_actions_info" />
+    </receiver>

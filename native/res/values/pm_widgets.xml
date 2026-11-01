@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pm_w_chats">PastMetka: список чатов</string>
+    <string name="pm_w_notes">PastMetka: список заметок</string>
+    <string name="pm_w_deadline">PastMetka: напоминание о дедлайнах</string>
+    <string name="pm_w_quick">PastMetki: быстрые действия</string>
+</resources>
