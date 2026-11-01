@@ -1,0 +1,32 @@
+name: Build APK
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - run: npm install
+      - run: bash native/prep.sh
+      - name: Install native widgets and deep links
+        run: python3 native/install.py
+      - name: Verify PastMetki launcher icon and widgets
+        run: |
+          test -f android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+          grep -q 'android:icon="@mipmap/ic_launcher"' android/app/src/main/AndroidManifest.xml
+          grep -q 'QuickActionsWidget' android/app/src/main/AndroidManifest.xml
+          test -f android/app/src/main/res/xml/pm_quick_actions_info.xml
+      - name: Build APK
+        run: cd android && ./gradlew assembleDebug
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PastMetki-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
